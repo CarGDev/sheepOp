@@ -1,0 +1,36 @@
+{
+  "model": {
+    "vocab_size": 50257,
+    "d_model": 512,
+    "num_layers": 6,
+    "num_heads": 8,
+    "d_ff": 2048,
+    "max_seq_len": 512,
+    "dropout": 0.1,
+    "activation": "gelu",
+    "layer_norm_eps": 1e-5,
+    "bias": false,
+    "tie_weights": true
+  },
+  "training": {
+    "batch_size": 8,
+    "max_epochs": 50,
+    "learning_rate": 1e-4,
+    "weight_decay": 0.01,
+    "warmup_steps": 1000,
+    "max_grad_norm": 1.0,
+    "gradient_accumulation_steps": 16,
+    "use_amp": true,
+    "save_dir": "./checkpoints",
+    "log_interval": 50,
+    "eval_interval": 500
+  },
+  "data": {
+    "data_dir": "./data",
+    "max_length": 512,
+    "stride": null,
+    "num_workers": 12
+  },
+  "device": "cuda",
+  "seed": 42
+}

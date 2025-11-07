@@ -1,0 +1,28 @@
+# IMPORTANT: On modern Debian/Ubuntu systems (Python 3.12+), you MUST use a virtual environment
+# before installing these packages. Run: python3 -m venv venv && source venv/bin/activate
+# Or use the automated setup script: ./setup.sh
+
+torch>=2.0.0
+transformers>=4.30.0
+numpy>=1.24.0
+tqdm>=4.65.0
+tensorboard>=2.13.0
+matplotlib>=3.7.0
+
+# Optional dependencies for data processing
+# Install these if you want to process PDFs or images:
+# For PDF processing (choose one - pdfplumber is recommended for better quality):
+pdfplumber>=0.9.0  # Recommended: better text extraction quality
+# PyPDF2>=3.0.0  # Alternative PDF library (lighter weight but less accurate)
+
+# For image OCR (requires Tesseract OCR engine installed on system):
+# pytesseract>=0.3.10  # For OCR
+# Pillow>=10.0.0  # Required for image processing with pytesseract
+# 
+# To install Tesseract OCR engine:
+#   Ubuntu/Debian: sudo apt-get install tesseract-ocr
+#   macOS: brew install tesseract
+#   Windows: Download from https://github.com/UB-Mannheim/tesseract/wiki
+
+# For downloading datasets from Hugging Face (used by download_large_data.py):
+datasets>=2.14.0  # Optional: for downloading WikiText, OpenWebText, BookCorpus, etc.
