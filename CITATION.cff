@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "SheepOp LLM: Transformer-based Language Model Implementation"
+version: "1.0.0"
+date-released: "2024-11-06"
+authors:
+  - given-names: "Carlos"
+    family-names: "Gutierrez"
+    email: "carlos.gutierrez@carg.dev"
+keywords:
+  - "language model"
+  - "transformer"
+  - "deep learning"
+  - "neural networks"
+  - "LLM"
+license: "Apache-2.0"
+repository-code: "https://github.com/CarGDev/sheepOp"
+abstract: "A modern language model implementation from scratch, incorporating insights from recent research papers. Complete transformer implementation with training pipeline, optimized inference, and multi-format data processing."
+

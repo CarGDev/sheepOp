@@ -2,7 +2,7 @@
 
 **Author:** Carlos Gutierrez  
 **Email:** carlos.gutierrez@carg.dev  
-**License:** Apache 2.0
+**License:** Dual License - Apache 2.0 (Research) + Commercial License (Commercial Use)
 
 A modern language model implementation from scratch, incorporating insights from recent research papers.
 
@@ -344,17 +344,68 @@ All detailed documentation is available in the [`docs/`](docs/) folder:
 
 ## License
 
-This project is licensed under the **Apache License 2.0**.
+This project is available under a **dual license**:
+
+### Apache 2.0 License (Research & Non-Commercial Use)
+
+**Free for:**
+- ✅ Academic research
+- ✅ Educational purposes
+- ✅ Personal projects
+- ✅ Open source contributions
+- ✅ Non-commercial use
+
+**Terms:**
+- Free to use, modify, and distribute
+- Patent grant included
+- Must include license and copyright notice
+- Must state changes if modifying
+
+### Commercial License (Commercial Use)
+
+**Requires a commercial license for:**
+- ⚠️ Commercial products or services
+- ⚠️ SaaS applications
+- ⚠️ Revenue-generating applications
+- ⚠️ Internal business use (for profit-making entities)
+- ⚠️ Any use that generates profit or revenue
+
+**To obtain a commercial license:**
+Contact: **carlos.gutierrez@carg.dev**  
+Subject: Commercial License Inquiry - SheepOp
+
+Please include:
+- Intended use case
+- Expected usage volume
+- Company/Organization name
+- Contact information
+
+### Citation Requirement
+
+**IMPORTANT:** If you use this software in academic research or publications, you **MUST cite** this work. This is a condition of use for academic purposes.
+
+**Required Citation Format:**
+
+BibTeX:
+```bibtex
+@software{sheepop2024,
+  title = {SheepOp LLM: Transformer-based Language Model Implementation},
+  author = {Gutierrez, Carlos},
+  year = {2024},
+  url = {https://github.com/[your-username]/sheepOp},
+  version = {1.0}
+}
+```
+
+Text format:
+```
+Carlos Gutierrez. (2024). SheepOp LLM: Transformer-based Language Model 
+Implementation. https://github.com/[your-username]/sheepOp
+```
+
+**Note:** Citation is required for academic use. Failure to cite constitutes a violation of the terms of use.
 
 See [LICENSE](LICENSE) or [LICENSE.txt](LICENSE.txt) for the full license text.
-
-**Summary:**
-- ✅ Free to use, modify, and distribute
-- ✅ Commercial use allowed
-- ✅ Patent grant included
-- ✅ Private use allowed
-- ⚠️ Must include license and copyright notice
-- ⚠️ Must state changes if modifying
 
 ---
 

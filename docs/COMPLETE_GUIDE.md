@@ -4,17 +4,23 @@ A modern language model implementation from scratch, incorporating insights from
 
 ## License
 
-This project is licensed under the **Apache License 2.0**.
+This project is available under a **dual license**:
+
+### Apache 2.0 License (Research & Non-Commercial Use)
+
+**Free for:** Academic research, educational purposes, personal projects, open source contributions, and non-commercial use.
+
+### Commercial License (Commercial Use)
+
+**Requires a commercial license for:** Commercial products, SaaS applications, revenue-generating applications, and any profit-making use.
+
+**Contact:** carlos.gutierrez@carg.dev for commercial licensing inquiries.
+
+### Citation
+
+Please cite this work in academic publications.
 
 See [LICENSE](../LICENSE) or [LICENSE.txt](../LICENSE.txt) for the full license text.
-
-**Summary:**
-- ✅ Free to use, modify, and distribute
-- ✅ Commercial use allowed
-- ✅ Patent grant included
-- ✅ Private use allowed
-- ⚠️ Must include license and copyright notice
-- ⚠️ Must state changes if modifying
 
 ## Table of Contents
 
