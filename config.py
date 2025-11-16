@@ -21,6 +21,7 @@ class ModelConfig:
     layer_norm_eps: float = 1e-5
     bias: bool = False
     tie_weights: bool = True
+    use_optimized_attention: bool = False  # Enable KV caching optimizations
 
 
 @dataclass
