@@ -14,17 +14,17 @@
     "use_optimized_attention": true
   },
   "training": {
-    "batch_size": 16,
-    "max_epochs": 5,
-    "learning_rate": 2e-4,
+    "batch_size": 12,
+    "max_epochs": 50,
+    "learning_rate": 1e-4,
     "weight_decay": 0.01,
-    "warmup_steps": 500,
+    "warmup_steps": 1000,
     "max_grad_norm": 1.0,
-    "gradient_accumulation_steps": 8,
+    "gradient_accumulation_steps": 16,
     "use_amp": true,
     "save_dir": "./checkpoints_optimized",
-    "log_interval": 25,
-    "eval_interval": 200
+    "log_interval": 50,
+    "eval_interval": 500
   },
   "data": {
     "data_dir": "./data",
