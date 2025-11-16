@@ -92,6 +92,13 @@ class InferenceMetrics:
         Returns:
             Dictionary with comparison statistics
         """
+        def safe_mean(values):
+            """Safely compute mean, returning None if no valid values."""
+            valid_values = [v for v in values if v is not None and not (isinstance(v, float) and np.isnan(v))]
+            if not valid_values:
+                return None
+            return np.mean(valid_values)
+        
         runs = self.metrics['runs']
         
         optimized_runs = [r for r in runs if r['optimized']]
@@ -103,16 +110,16 @@ class InferenceMetrics:
                 'avg_tokens_per_sec': np.mean([r['tokens_per_second'] for r in optimized_runs]) if optimized_runs else 0,
                 'avg_time_per_token': np.mean([r['time_per_token'] for r in optimized_runs]) if optimized_runs else 0,
                 'avg_total_time': np.mean([r['total_time'] for r in optimized_runs]) if optimized_runs else 0,
-                'avg_memory_mb': np.mean([r['memory_used_mb'] for r in optimized_runs if r['memory_used_mb']]) if optimized_runs else None,
-                'avg_gpu_util': np.mean([r['gpu_utilization'] for r in optimized_runs if r['gpu_utilization']]) if optimized_runs else None,
+                'avg_memory_mb': safe_mean([r['memory_used_mb'] for r in optimized_runs]),
+                'avg_gpu_util': safe_mean([r['gpu_utilization'] for r in optimized_runs]),
             },
             'non_optimized': {
                 'count': len(non_optimized_runs),
                 'avg_tokens_per_sec': np.mean([r['tokens_per_second'] for r in non_optimized_runs]) if non_optimized_runs else 0,
                 'avg_time_per_token': np.mean([r['time_per_token'] for r in non_optimized_runs]) if non_optimized_runs else 0,
                 'avg_total_time': np.mean([r['total_time'] for r in non_optimized_runs]) if non_optimized_runs else 0,
-                'avg_memory_mb': np.mean([r['memory_used_mb'] for r in non_optimized_runs if r['memory_used_mb']]) if non_optimized_runs else None,
-                'avg_gpu_util': np.mean([r['gpu_utilization'] for r in non_optimized_runs if r['gpu_utilization']]) if non_optimized_runs else None,
+                'avg_memory_mb': safe_mean([r['memory_used_mb'] for r in non_optimized_runs]),
+                'avg_gpu_util': safe_mean([r['gpu_utilization'] for r in non_optimized_runs]),
             },
         }
         
@@ -124,7 +131,9 @@ class InferenceMetrics:
             comparison['speedup'] = None
         
         # Calculate memory reduction
-        if comparison['optimized']['avg_memory_mb'] and comparison['non_optimized']['avg_memory_mb']:
+        if (comparison['optimized']['avg_memory_mb'] is not None and 
+            comparison['non_optimized']['avg_memory_mb'] is not None and
+            comparison['non_optimized']['avg_memory_mb'] > 0):
             memory_reduction = (1 - comparison['optimized']['avg_memory_mb'] / comparison['non_optimized']['avg_memory_mb']) * 100
             comparison['memory_reduction_percent'] = memory_reduction
         else:
@@ -356,7 +365,7 @@ class InferenceMetrics:
             print(f"  Average Tokens/Second: {comparison['optimized']['avg_tokens_per_sec']:.2f}")
             print(f"  Average Time/Token: {comparison['optimized']['avg_time_per_token']:.3f} ms")
             print(f"  Average Total Time: {comparison['optimized']['avg_total_time']:.3f} s")
-            if comparison['optimized']['avg_memory_mb']:
+            if comparison['optimized']['avg_memory_mb'] is not None:
                 print(f"  Average Memory: {comparison['optimized']['avg_memory_mb']:.1f} MB")
         
         print(f"\nNon-Optimized Runs: {comparison['non_optimized']['count']}")
@@ -364,13 +373,13 @@ class InferenceMetrics:
             print(f"  Average Tokens/Second: {comparison['non_optimized']['avg_tokens_per_sec']:.2f}")
             print(f"  Average Time/Token: {comparison['non_optimized']['avg_time_per_token']:.3f} ms")
             print(f"  Average Total Time: {comparison['non_optimized']['avg_total_time']:.3f} s")
-            if comparison['non_optimized']['avg_memory_mb']:
+            if comparison['non_optimized']['avg_memory_mb'] is not None:
                 print(f"  Average Memory: {comparison['non_optimized']['avg_memory_mb']:.1f} MB")
         
         if comparison['speedup']:
             print(f"\n🚀 SPEEDUP: {comparison['speedup']:.2f}x faster with optimizations")
         
-        if comparison['memory_reduction_percent']:
+        if comparison['memory_reduction_percent'] is not None:
             print(f"💾 MEMORY REDUCTION: {comparison['memory_reduction_percent']:.1f}%")
         
         print("=" * 70)
