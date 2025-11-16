@@ -1,0 +1,100 @@
+Explain how attention mechanisms work in transformers
+What is the difference between self-attention and cross-attention?
+Describe the transformer architecture and its key components
+How does gradient descent optimize neural network parameters?
+What is the purpose of layer normalization in deep learning?
+Explain the concept of embeddings in natural language processing
+Describe how positional encoding works in transformers
+What is the role of the feed-forward network in transformer blocks?
+How does backpropagation compute gradients through the network?
+Explain the difference between training and inference in machine learning
+What is the purpose of dropout regularization?
+Describe how tokenization converts text into numerical representations
+Explain the concept of batch processing in neural network training
+What is the learning rate and why is it important?
+How does the Adam optimizer differ from standard gradient descent?
+Describe the multi-head attention mechanism
+What is causal masking and why is it used in language models?
+Explain how text generation works in autoregressive models
+What is temperature in sampling and how does it affect generation?
+Describe the difference between top-k and top-p sampling strategies
+How do residual connections help in training deep networks?
+What is the purpose of the softmax function in neural networks?
+Explain how KV caching improves inference performance
+What are the advantages of using pre-normalization in transformers?
+Describe the mathematical formulation of the attention mechanism
+How does mixed precision training reduce memory usage?
+What is gradient clipping and when is it necessary?
+Explain the concept of perplexity as a language model metric
+How does data augmentation improve model generalization?
+What is the difference between fine-tuning and transfer learning?
+Describe how transformers process variable-length sequences
+What is the purpose of the vocabulary in tokenization?
+Explain how learning rate scheduling improves training
+How do transformers handle long-range dependencies in text?
+What is the difference between encoder and decoder architectures?
+Describe the role of activation functions in neural networks
+How does weight initialization affect training dynamics?
+What is the purpose of the loss function in model training?
+Explain how batching improves training efficiency
+Describe the concept of overfitting and how to prevent it
+What is the difference between supervised and unsupervised learning?
+How do transformers compare to recurrent neural networks?
+Explain the concept of transfer learning in deep learning
+What is the purpose of the validation set in machine learning?
+Describe how early stopping prevents overfitting
+What is the difference between training loss and validation loss?
+How does data preprocessing improve model performance?
+Explain the concept of feature extraction in neural networks
+What is the purpose of the test set in model evaluation?
+Describe how cross-validation works in machine learning
+The transformer architecture revolutionized natural language processing by introducing
+Attention mechanisms allow models to focus on relevant parts of the input sequence when
+In deep learning, the optimization process involves iteratively updating model parameters to
+Neural networks learn representations by transforming input data through multiple layers of
+The key innovation of transformers is their ability to process sequences in parallel rather than
+Gradient descent optimization works by computing the derivative of the loss function with respect to
+Layer normalization stabilizes training by normalizing activations across the feature dimension to
+Embeddings convert discrete tokens into continuous vector representations that capture semantic
+Positional encoding provides information about token positions in sequences since transformers lack
+The feed-forward network in transformers applies two linear transformations with a non-linear activation to
+Backpropagation efficiently computes gradients by applying the chain rule of calculus through the computational
+During inference, models generate predictions without updating parameters, which makes it different from
+Dropout regularization randomly sets a fraction of activations to zero during training to prevent
+Tokenization is the process of breaking text into smaller units called tokens that can be processed by
+Batch processing groups multiple examples together to compute gradients more efficiently and stabilize
+The learning rate controls the step size during optimization, and choosing the right value is crucial for
+Adam optimizer combines the benefits of momentum and adaptive learning rates to achieve faster
+Multi-head attention allows the model to attend to information from different representation subspaces
+Causal masking ensures that during training, tokens can only attend to previous tokens, maintaining the
+Autoregressive generation produces text one token at a time, using previously generated tokens as input for
+Temperature scaling adjusts the randomness of sampling by dividing logits before applying softmax, where lower
+Top-k sampling restricts the sampling space to the k most likely tokens, while top-p sampling uses nucleus
+Residual connections enable gradient flow through deep networks by adding the input directly to the output of
+Softmax converts logits into probability distributions by exponentiating and normalizing values, ensuring that
+KV caching stores previously computed key and value matrices to avoid redundant computations during autoregressive
+Pre-normalization places layer normalization before sublayers, which has been shown to improve training stability
+The attention mechanism computes a weighted sum of values, where weights are determined by the similarity between
+Mixed precision training uses both float16 and float32 operations to reduce memory consumption while maintaining
+Gradient clipping prevents exploding gradients by limiting the norm of gradients to a maximum value, which is
+Perplexity measures how well a language model predicts a sequence, with lower values indicating better
+Data augmentation creates variations of training examples to increase dataset diversity and improve model
+Fine-tuning adapts a pre-trained model to a specific task by continuing training on task-specific data, which
+Transformers handle variable-length sequences by using padding and attention masks to ignore irrelevant
+The vocabulary defines the set of all possible tokens that the model can process, and its size affects
+Learning rate scheduling adjusts the learning rate during training, often starting high and decreasing over
+Transformers excel at capturing long-range dependencies because attention can directly connect any two positions
+Encoder architectures are designed for understanding tasks, while decoder architectures are optimized for
+Activation functions introduce non-linearity into neural networks, enabling them to learn complex
+Weight initialization sets the initial values of parameters, and proper initialization is critical for
+The loss function quantifies how far model predictions are from ground truth, guiding the optimization
+Batching improves efficiency by parallelizing computations across multiple examples, reducing the variance of
+Overfitting occurs when a model memorizes training data instead of learning generalizable patterns, which can be
+Supervised learning uses labeled data, while unsupervised learning finds patterns in unlabeled data without
+Transformers replaced RNNs in many applications because they can process sequences in parallel and capture
+Transfer learning leverages knowledge from pre-trained models on large datasets to improve performance on
+The validation set is used to tune hyperparameters and monitor training progress without affecting the
+Early stopping terminates training when validation performance stops improving, preventing overfitting and
+Training loss measures performance on seen data, while validation loss indicates generalization to unseen
+Data preprocessing transforms raw data into a format suitable for model training, including normalization
+Feature extraction learns meaningful representations from raw input data, enabling models to identify patterns

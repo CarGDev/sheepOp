@@ -201,6 +201,11 @@ training_metrics.json
 wandb/
 tensorboard_logs/
 
+# Inference benchmarks (ignore JSON/CSV, but track PNG files)
+# inference_benchmarks/*.json
+# inference_benchmarks/*.csv
+# !inference_benchmarks/*.png
+
 # Data (already covered but ensure)
 data/
 data_storage/
