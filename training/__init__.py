@@ -303,9 +303,12 @@ class Trainer:
         except KeyboardInterrupt:
             print("\n\n⚠️  Training interrupted by user!")
             print(f"💾 Saving checkpoint at epoch {self.current_epoch + 1}...")
-            self.save_checkpoint()
-            print(f"✅ Checkpoint saved! You can resume with:")
-            print(f"   python3 train.py --data <data> --resume {self.save_dir}/checkpoint_epoch_{self.current_epoch}.pt")
+            try:
+                self.save_checkpoint()
+                print(f"✅ Checkpoint saved! You can resume with:")
+                print(f"   python3 train.py --data <data> --resume {self.save_dir}/checkpoint_epoch_{self.current_epoch}.pt")
+            except Exception as e:
+                print(f"⚠️  Warning: Could not save checkpoint: {e}")
             
             # Generate plots before exiting
             print("\n📊 Generating training plots...")
@@ -316,7 +319,9 @@ class Trainer:
             except Exception as e:
                 print(f"Warning: Could not generate plots: {e}")
             
-            raise
+            # Exit cleanly instead of re-raising
+            print("\n✅ Training interrupted successfully. Exiting...")
+            return
     
     def save_checkpoint(self, is_best: bool = False, model_config: dict = None):
         """Save model checkpoint."""
