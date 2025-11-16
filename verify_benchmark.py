@@ -1,11 +1,33 @@
 #!/usr/bin/env python3
 """
 Diagnostic script to verify benchmark results and understand the optimizations.
+
+Note: Make sure to use the virtual environment Python:
+    /home/carlos/projects/sheepOp/venv/bin/python3 verify_benchmark.py ...
+    
+Or activate the venv first:
+    source venv/bin/activate
+    python verify_benchmark.py ...
 """
-import torch
+import sys
 import time
 from pathlib import Path
-import sys
+
+# Try to import torch, give helpful error if not found
+try:
+    import torch
+except ImportError:
+    print("ERROR: torch is not installed or not in Python path")
+    print(f"Python executable: {sys.executable}")
+    print(f"Python path: {sys.path}")
+    print("\nTo fix this:")
+    print("1. Activate your virtual environment:")
+    print("   source venv/bin/activate")
+    print("2. Or use the venv Python directly:")
+    print("   venv/bin/python3 verify_benchmark.py ...")
+    print("3. Or install torch in this environment:")
+    print("   pip install torch")
+    sys.exit(1)
 
 # Add project root to path
 project_root = Path(__file__).parent.absolute()
