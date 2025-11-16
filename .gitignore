@@ -174,7 +174,7 @@ checkpoints_test/
 
 # Training artifacts (discovered knowledge)
 # Ignore all images except those in docs/images
-*.png
+# *.png
 *.jpg
 *.jpeg
 *.svg
