@@ -171,6 +171,7 @@ Thumbs.db
 # Checkpoints (if you don't want to track them)
 checkpoints/
 checkpoints_test/
+checkpoints_optimized/
 
 # Training artifacts (discovered knowledge)
 # Ignore all images except those in docs/images
