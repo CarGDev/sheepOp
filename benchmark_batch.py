@@ -6,6 +6,7 @@ Collects data across multiple prompts for research analysis.
 import subprocess
 import argparse
 import json
+import sys
 from pathlib import Path
 import time
 from typing import List
@@ -22,7 +23,7 @@ def run_benchmark(
 ):
     """Run a single benchmark."""
     cmd = [
-        'python', 'inference.py',
+        sys.executable, 'inference.py',
         '--checkpoint', checkpoint,
         '--prompt', prompt,
         '--max-length', str(max_length),
