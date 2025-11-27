@@ -7799,6 +7799,45 @@
       "memory_used_mb": 86.57470703125,
       "gpu_utilization": null,
       "device": "cuda"
+    },
+    {
+      "run_name": "run_1763936322_non_optimized",
+      "timestamp": 1763936322.5285127,
+      "optimized": false,
+      "prompt_length": 53,
+      "generated_length": 47,
+      "total_time": 0.34784841537475586,
+      "tokens_per_second": 135.11632631519785,
+      "time_per_token": 7.401030114356508,
+      "memory_used_mb": 83.77001953125,
+      "gpu_utilization": null,
+      "device": "cuda"
+    },
+    {
+      "run_name": "run_1763936322_optimized",
+      "timestamp": 1763936322.6566308,
+      "optimized": true,
+      "prompt_length": 53,
+      "generated_length": 47,
+      "total_time": 0.12265253067016602,
+      "tokens_per_second": 383.1963331143258,
+      "time_per_token": 2.609628312131192,
+      "memory_used_mb": 86.13916015625,
+      "gpu_utilization": null,
+      "device": "cuda"
+    },
+    {
+      "run_name": "run_1763936325_non_optimized",
+      "timestamp": 1763936325.8276925,
+      "optimized": false,
+      "prompt_length": 66,
+      "generated_length": 34,
+      "total_time": 0.3239288330078125,
+      "tokens_per_second": 104.96132648735221,
+      "time_per_token": 9.527318617876839,
+      "memory_used_mb": 83.7705078125,
+      "gpu_utilization": null,
+      "device": "cuda"
     }
   ]
 }
