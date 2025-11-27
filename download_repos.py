@@ -327,7 +327,7 @@ def download_category(
         repo_url = repo['clone_url']
         repo_name = repo['full_name']
         stars = repo['stargazers_count']
-        repo_lang = repo.get('language', 'N/A')
+        repo_lang = repo.get('language') or 'N/A'
         
         # Update progress bar before clone
         pbar.set_postfix({
