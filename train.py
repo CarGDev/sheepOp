@@ -73,6 +73,12 @@ def main():
     parser.add_argument('--data', type=str, required=True, help='Path to training data')
     parser.add_argument('--output', type=str, default='./checkpoints', help='Output directory')
     parser.add_argument('--resume', type=str, help='Path to checkpoint to resume from')
+    parser.add_argument('--max-files', type=int, default=None, help='Maximum number of files to process (None = all)')
+    parser.add_argument('--data-workers', type=int, default=0, help='Number of parallel workers for data processing (0 = sequential, -1 = auto)')
+    parser.add_argument('--skip-images', action='store_true', help='Skip image files (faster processing)')
+    parser.add_argument('--skip-pdfs', action='store_true', help='Skip PDF files (faster processing)')
+    parser.add_argument('--no-ocr', action='store_true', help='Disable OCR for images')
+    parser.add_argument('--no-pdf-extraction', action='store_true', help='Disable PDF text extraction')
     
     # Auto-detect best device
     if hasattr(torch.backends, 'mps') and torch.backends.mps.is_available():
@@ -143,9 +149,13 @@ def main():
             texts = extract_text_from_directory(
                 directory=data_path,
                 recursive=True,
-                use_ocr=True,  # Enable OCR for images
-                use_pdf_extraction=True,  # Enable PDF extraction
+                use_ocr=not args.no_ocr,  # Enable OCR for images unless disabled
+                use_pdf_extraction=not args.no_pdf_extraction,  # Enable PDF extraction unless disabled
                 min_length=10,  # Minimum length for text lines
+                max_files=args.max_files,  # Limit number of files if specified
+                num_workers=args.data_workers,  # Parallel processing workers
+                skip_images=args.skip_images,  # Skip images entirely
+                skip_pdfs=args.skip_pdfs,  # Skip PDFs entirely
             )
         except KeyboardInterrupt:
             print("\n\n⚠️  Data processing interrupted by user (Ctrl+C).")
