@@ -3,6 +3,7 @@ Main training script
 """
 import torch
 import argparse
+import random
 from pathlib import Path
 import sys
 import os
@@ -43,8 +44,12 @@ if not data_module_path.exists():
         error_msg += f"  Try: cd <project_root> && python3 train.py ..."
         raise ImportError(error_msg)
 
-spec = importlib.util.spec_from_file_location("sheepop_data", data_module_path)
+spec = importlib.util.spec_from_file_location(
+    "data", data_module_path,
+    submodule_search_locations=[str(project_root / "data")],
+)
 sheepop_data = importlib.util.module_from_spec(spec)
+sys.modules["data"] = sheepop_data
 spec.loader.exec_module(sheepop_data)
 
 # Import from the explicitly loaded module
@@ -79,6 +84,10 @@ def main():
     parser.add_argument('--skip-pdfs', action='store_true', help='Skip PDF files (faster processing)')
     parser.add_argument('--no-ocr', action='store_true', help='Disable OCR for images')
     parser.add_argument('--no-pdf-extraction', action='store_true', help='Disable PDF text extraction')
+    parser.add_argument('--train-tokenizer', action='store_true', help='Train BPE tokenizer on the training data before training the model')
+    parser.add_argument('--tokenizer-vocab-size', type=int, default=50257, help='Target BPE vocabulary size (default: 50257)')
+    parser.add_argument('--tokenizer-sample', type=int, default=None, help='Maximum number of text samples used to train the tokenizer (None = all; use a smaller number for large corpora)')
+    parser.add_argument('--tokenizer-merges', type=int, default=None, help='Number of BPE merges (default: vocab_size - 256)')
     
     # Auto-detect best device
     if hasattr(torch.backends, 'mps') and torch.backends.mps.is_available():
@@ -176,8 +185,24 @@ def main():
         print(f"   {i+1}. {preview}")
     
     # Create tokenizer
-    tokenizer = SimpleTokenizer()
+    tokenizer = SimpleTokenizer(vocab_size=args.tokenizer_vocab_size)
     print(f"Vocabulary size: {tokenizer.vocab_size}")
+    
+    # Optionally train the BPE tokenizer on the corpus
+    if args.train_tokenizer:
+        train_texts = texts
+        if args.tokenizer_sample and len(texts) > args.tokenizer_sample:
+            train_texts = random.sample(texts, args.tokenizer_sample)
+            print(f"Training BPE tokenizer on {len(train_texts):,} sampled texts (of {len(texts):,} total)...")
+        else:
+            print(f"Training BPE tokenizer on {len(texts):,} texts...")
+        print(f"  This can be slow for large corpora (O(merges x corpus size)).")
+        tokenizer.train(
+            texts=train_texts,
+            num_merges=args.tokenizer_merges,
+            verbose=True,
+        )
+        print(f"✅ Tokenizer trained. Vocabulary size: {tokenizer.vocab_size}")
     
     # Create data loaders
     train_loader = create_dataloader(

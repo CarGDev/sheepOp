@@ -8,7 +8,7 @@ Addresses common tokenization challenges:
 - Proper special token handling
 - Trailing whitespace warnings
 """
-import re
+import regex as re
 import json
 from typing import List, Dict, Tuple, Optional, Set
 from collections import defaultdict
@@ -207,8 +207,12 @@ class BPETokenizer:
             self.merges[pair] = new_id
             
             # Update vocabulary
-            left_bytes = self.vocab.get(pair[0], bytes([pair[0]]))
-            right_bytes = self.vocab.get(pair[1], bytes([pair[1]]))
+            left_bytes = self.vocab.get(pair[0])
+            if left_bytes is None:
+                left_bytes = bytes([pair[0]])
+            right_bytes = self.vocab.get(pair[1])
+            if right_bytes is None:
+                right_bytes = bytes([pair[1]])
             merged_bytes = left_bytes + right_bytes
             self.vocab[new_id] = merged_bytes
             self.inv_vocab[merged_bytes] = new_id
@@ -336,7 +340,7 @@ class BPETokenizer:
                     bytes_parts.append(bytes([token_id]))
                 else:
                     # Unknown token - use replacement character
-                    bytes_parts.append(b'\ufffd')
+                    bytes_parts.append(b'\xef\xbf\xbd')
         
         # Concatenate bytes
         if not bytes_parts:
